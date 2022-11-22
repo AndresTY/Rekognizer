@@ -38,4 +38,4 @@ jobs:
         run: |
           source env/bin/activate
           ls
-          pytest
+          pytest test.py
