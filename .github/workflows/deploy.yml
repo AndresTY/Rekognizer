@@ -13,6 +13,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+
+  # provide the code to aws
   Build-deploy:
     runs-on: ubuntu-latest
     steps:
