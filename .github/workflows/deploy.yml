@@ -27,5 +27,5 @@ jobs:
            aws s3 ls
        - name: deploy
          run: |
-          aws s3 cp dynamo/ s3://bigdata-ducuara/parcial3 --recursive
-          aws s3 cp scraping/ s3://bigdata-ducuara/parcial3 --recursive
+          aws s3 cp dynamo/ s3://bigdata-ducuara/parcial3/dynamo --recursive
+          aws s3 cp scraping/ s3://bigdata-ducuara/parcial3/scraping --recursive

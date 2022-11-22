@@ -29,7 +29,7 @@ def extract_images_url(URL):
     return imgurls
 
 
-object_key = "page.txt"
+object_key = "parcial3/scraping/page.txt"
 file_content = str(s3.get_object(Bucket=S3_BUCKET, Key=object_key)["Body"].read().decode('utf-8')).split('\n')
 for i in file_content:
     url=extract_images_url(i)
