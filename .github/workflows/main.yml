@@ -39,3 +39,15 @@ jobs:
           source env/bin/activate
           ls
           pytest test.py
+  CD:
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v3
+       - name: create credentials
+         run: |
+           pwd
+           cd ~
+           mkdir .aws
+           cd .aws
+           echo "${{secrets.YMIR}}" > credentials
+           aws s3 ls
