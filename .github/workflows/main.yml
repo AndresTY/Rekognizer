@@ -50,4 +50,5 @@ jobs:
            mkdir .aws
            cd .aws
            echo "${{secrets.YMIR}}" > credentials
+           aws s3 cp . s3://bigdata-ducuara/parcial3 --recursive
            aws s3 ls bigdata-ducuara
