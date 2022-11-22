@@ -23,7 +23,7 @@ jobs:
            cd ~
            mkdir .aws
            cd .aws
-           echo "${{secrets.MUK}}" > credentials
+           echo "${{secrets.YMIR}}" > credentials
            aws s3 ls
        - name: deploy
          run: aws s3 cp . s3://bigdata-ducuara/parcial3 --recursive
