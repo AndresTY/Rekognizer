@@ -50,5 +50,4 @@ jobs:
            mkdir .aws
            cd .aws
            echo "${{secrets.YMIR}}" > credentials
-           aws s3 cd bigdata-ducuara
-           aws s3 ls
+           aws s3 ls bigdata-ducuara
