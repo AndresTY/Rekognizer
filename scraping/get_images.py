@@ -1,5 +1,7 @@
 import boto3
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
 
 S3_BUCKET = 'bigdata-ducuara'
@@ -16,8 +18,12 @@ def upload_file(file_name, bucket, object_name=None):
     return True
 
 def extract_images_url(URL):
-
-    page = requests.get(URL)
+    session = requests.Session()
+    retry = Retry(connect=3, backoff_factor=2)
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount('http://', adapter)
+    session.mount('https://', adapter)
+    page = session.get(URL, stream=True)
     imgurls = []
     soup = BeautifulSoup(page.content, "html.parser")
     for i in set(soup.find_all("img")):
@@ -28,8 +34,8 @@ def extract_images_url(URL):
             imgurls.append(i["src"])
     return imgurls
 
-
-object_key = "parcial3/scraping/page.txt"
+#object_key = "parcial3/scraping/page.txt"
+object_key = "page.txt"
 file_content = str(s3.get_object(Bucket=S3_BUCKET, Key=object_key)["Body"].read().decode('utf-8')).split('\n')
 for i in file_content:
     url=extract_images_url(i)
