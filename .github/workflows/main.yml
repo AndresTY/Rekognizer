@@ -37,4 +37,4 @@ jobs:
       - name: test
         run: |
           source env/bin/activate
-          pytest test.py
+          pytest
